@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Data in table.csv</h1>
+    <table border="1">
+
+        <tr>
+            <!-- {{/*{{if eq $index 0}}*/}}
+            <td>{{/*value*/}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td> 
+            {{/*else*/}} -->
+            <td>Date</td>
+            <td>Open</td>
+            <td>High</td>
+            <td>Low</td>
+            <td>Close</td>
+            <td>Volume</td> 
+            <td>Adj Close</td>
+
+        </tr>
+        
+        {{range $index, $value := .}}
+        <tr>
+            <td>{{ymd $value.Date}}</td>
+            <td>{{$value.Open}}</td>
+            <td>{{$value.High}}</td>
+            <td>{{$value.Low}}</td>
+            <td>{{$value.Close}}</td>
+            <td>{{$value.Volume}}</td> 
+            <td>{{$value.AdjClose}}</td>
+        </tr>
+        {{end}}
+        
+    </table>
+    
+</body>
+</html>
