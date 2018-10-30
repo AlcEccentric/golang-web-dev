@@ -14,6 +14,12 @@ func init() {
 }
 
 func monthDayYear(t time.Time) string {
+
+	// 01 represent month
+	// 02 represent day
+	// 06 represent year
+	// THere are many const strings predefined in Go
+	// That can be passed to Format func
 	return t.Format("01-02-2006")
 }
 

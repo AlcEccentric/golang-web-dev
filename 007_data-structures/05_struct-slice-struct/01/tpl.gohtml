@@ -7,6 +7,12 @@
 <body>
 
 <ul>
+    // the Wisdom field in the passed struct is a slice 
+    // so .Wisdom is a slice
+    // so range can work on it
+    // so dots in following scope are the element(struct) which is handled in the slice
+    // so dot is struct in the slice
+    // so use .FieldName access data
     {{range .Wisdom}}
     <li>{{.Name}} - {{.Motto}}</li>
     {{end}}

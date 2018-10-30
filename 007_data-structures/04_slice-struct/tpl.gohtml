@@ -6,6 +6,8 @@
 </head>
 <body>
 <ul>
+    // dots in the scope would be a same struct when range works on struct slice
+    // so use .FieldName to access data in struct 
     {{range .}}
     <li>{{.Name}} - {{.Motto}}</li>
     {{end}}

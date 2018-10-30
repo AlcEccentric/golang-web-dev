@@ -6,6 +6,9 @@
 </head>
 <body>
 <ul>
+    // When range works on map:
+    // dots in the following scope would be replaced by the same value, (no key)
+    // which belongs to key:value pair being handled by range
     {{range .}}
     <li>{{.}}</li>
     {{end}}

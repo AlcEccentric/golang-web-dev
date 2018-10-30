@@ -6,7 +6,18 @@
 </head>
 <body>
 <ul>
+    // "range" here would range each ele in slice passed
+
+    // . here would only get the values in slice
     {{range .}}
+    // All content in this scope would be duplicated (This comment too!)
+    // All "." in this scope would be relpaced by the same element,
+    // which is being handled by range
+    
+    // If we pass []int{1, 2, 3}
+    // Results would be six lis (with Three comments here)
+    // Every two li has same number
+    <li>{{.}}</li>
     <li>{{.}}</li>
     {{end}}
 </ul>

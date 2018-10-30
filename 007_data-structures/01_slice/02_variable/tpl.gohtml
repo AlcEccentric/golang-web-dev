@@ -6,6 +6,10 @@
 </head>
 <body>
 <ul>
+    // . here would be index,value pair here
+    // scope would be duplicated when iterate
+    // the index,value pairs of the slice
+    
     {{range $index, $element := .}}
     <li>{{$index}} - {{$element}}</li>
     {{end}}

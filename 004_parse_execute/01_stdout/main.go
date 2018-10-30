@@ -7,6 +7,8 @@ import (
 )
 
 func main() {
+	// Understand *Template(tpl) as a container,
+	// which contains all the files parsed
 	tpl, err := template.ParseFiles("tpl.gohtml")
 	if err != nil {
 		log.Fatalln(err)
