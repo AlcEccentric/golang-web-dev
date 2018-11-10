@@ -25,8 +25,16 @@ func main() {
 }
 
 func handle(conn net.Conn) {
+
+	// NewScanner takes an io reader
+	// return *Scanner type
 	scanner := bufio.NewScanner(conn)
+
+	// .Scan each time read a line (until EOF or \n )
+	// return a bool whether there is something
 	for scanner.Scan() {
+		// .Text get the content read by .Scan
+		/// bufio.ScanWords contains all the content of the message
 		ln := scanner.Text()
 		fmt.Println(ln)
 	}
@@ -34,6 +42,7 @@ func handle(conn net.Conn) {
 
 	// we never get here
 	// we have an open stream connection
+	// ,which means .Scan would not detect an EOF in the connection that is still alive
 	// how does the above reader know when it's done?
 	fmt.Println("Code got here.")
 }

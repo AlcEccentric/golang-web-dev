@@ -40,7 +40,7 @@ func handle(conn net.Conn) {
 	defer conn.Close()
 
 	// now we get here
-	// the connection will time out
+	// the connection will time out and be shut up
 	// that breaks us out of the scanner loop
 	fmt.Println("***CODE GOT HERE***")
 }
