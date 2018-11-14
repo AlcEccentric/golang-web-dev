@@ -30,6 +30,6 @@ func dogPic(w http.ResponseWriter, req *http.Request) {
 		http.Error(w, "file not found", 404)
 		return
 	}
-
+	// Which will use the etag mechanism
 	http.ServeContent(w, req, f.Name(), fi.ModTime(), f)
 }

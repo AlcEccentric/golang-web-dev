@@ -15,6 +15,12 @@ func c(res http.ResponseWriter, req *http.Request) {
 
 func main() {
 
+	// The difference between Handle and HandleFunc:
+	// We need to pass a Handler instance to Handle
+	// but pass a func having same func signature as serveHTTP to HandleFunc
+	// in this way, we dont need to declare any Handler instance at all
+	// just define the func used to handle different routes
+
 	http.HandleFunc("/dog", d)
 	http.HandleFunc("/cat", c)
 

@@ -16,6 +16,9 @@ func dog(w http.ResponseWriter, req *http.Request) {
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
+	// we can use absolute path like /toby.jpg
+	// all use relative path like toby.jpg
+	// which will visit the file under current visiting path
 	io.WriteString(w, `
 	<img src="/toby.jpg">
 	`)

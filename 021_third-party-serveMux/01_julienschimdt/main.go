@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/julienschmidt/httprouter"
 	"html/template"
 	"log"
 	"net/http"
+
+	"github.com/julienschmidt/httprouter"
 )
 
 var tpl *template.Template
@@ -17,7 +18,11 @@ func init() {
 func main() {
 	mux := httprouter.New()
 	mux.GET("/", index)
-	mux.GET("/about", about)
+	// when using julien httprouter
+	// "/about/" will not catch visit to paths like /about/xxx
+	// this is different from Handle or HandleFunc built in go
+	// safer but less convenient
+	mux.GET("/about/", about)
 	mux.GET("/contact", contact)
 	mux.GET("/apply", apply)
 	mux.POST("/apply", applyProcess)
