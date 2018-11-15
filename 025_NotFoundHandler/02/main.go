@@ -7,6 +7,8 @@ import (
 
 func main() {
 	http.HandleFunc("/", foo)
+	// http.NotFoundHandler write "404 Not found" into the ResponseWriter
+	// when clients visit the corresponding route
 	http.Handle("/favicon.ico", http.NotFoundHandler())
 	http.ListenAndServe(":8080", nil)
 }

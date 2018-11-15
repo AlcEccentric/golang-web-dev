@@ -1,9 +1,10 @@
 package main
 
 import (
-	"github.com/satori/go.uuid"
 	"html/template"
 	"net/http"
+
+	"github.com/satori/go.uuid"
 )
 
 type user struct {
@@ -27,6 +28,8 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 
+// this func is responsible for giving visitor cookie,
+// allowing them to start a session and show their info
 func index(w http.ResponseWriter, req *http.Request) {
 
 	// get cookie
@@ -47,6 +50,12 @@ func index(w http.ResponseWriter, req *http.Request) {
 	}
 
 	// process form submission
+	// PS: I think there is a fault here.
+	// in the index.gohtml we should not show the form if the visitor has started a session
+	// if we show that form again, and the visitor does post,
+	// the original session will be erased by the visitor
+	// and be replaced a new one.
+	// I dont think it is reasonable
 	if req.Method == http.MethodPost {
 		un := req.FormValue("username")
 		f := req.FormValue("firstname")
@@ -59,20 +68,29 @@ func index(w http.ResponseWriter, req *http.Request) {
 	tpl.ExecuteTemplate(w, "index.gohtml", u)
 }
 
+// using this function, we make /bar unvisitable by visitors
+// who have not started a session with our domain
 func bar(w http.ResponseWriter, req *http.Request) {
 
 	// get cookie
 	c, err := req.Cookie("session")
 	if err != nil {
+		// if the visitor first time visit the site
+		// redirect him to index page and dont show bar
 		http.Redirect(w, req, "/", http.StatusSeeOther)
 		return
 	}
 	un, ok := dbSessions[c.Value]
 	if !ok {
+		// if the visitor have visited the site
+		// but has not started a session
+		// redirect him to index page and dont show bar
 		http.Redirect(w, req, "/", http.StatusSeeOther)
 		return
 	}
 	u := dbUsers[un]
+	// only if the visitor has visited the site and has started a sesion,
+	// we will show him this page
 	tpl.ExecuteTemplate(w, "bar.gohtml", u)
 }
 
